@@ -1,0 +1,56 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			/* グラデーションの掛け方を変えるアニメーション */
+			@keyframes gradient {
+				0% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+
+			.hero {
+				/* グラデーション */
+				width: 100%;
+				height: calc(100vh - 4em);
+				background-image: linear-gradient(to right, #5f8aff, #7bfe9c);
+				background-size: 200% 200%;
+				animation-name: gradient;
+				animation: gradient 15s ease infinite;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+		</style>		
+	</head>
+	<body>
+		<Header />
+		<section class="hero">
+			<div>
+				<h1>CodeLune</h1>
+				<p>Welcome to Codelune, where we highlight amazing open-source projects.</p>
+				<button class="btn">Learn More</button>
+			</div>
+		</section>
+		<main>
+
+
+		</main>
+		<Footer />
+	</body>
+</html>

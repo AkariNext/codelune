@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+import Footer from '../../../components/Footer.astro';
+import BaseHead from '../../../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+import Header from '../../../components/Header.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+
+const posts = await getCollection('blog');
+// 重複している場合は {tag: string, count: number} に変換する
+const tags = posts.flatMap((post) => post.data.tags || []).map((tag) => tag.toLowerCase()).sort((a, b) => a.localeCompare(b));
+const uniqueTags = [...new Set(tags)];
+const tagCounts = uniqueTags.map((tag) => {
+  return {
+    tag,
+    count: tags.filter(t => t === tag).length,
+  };
+});
+
+
+
+
+---
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<ul>
+					{
+						tagCounts.map(({ tag, count }) => (
+							<li>
+                <a href={`/blog/tags/${tag}`}>
+                  <span class="title">{tag}</span>
+                </a>
+                <span class="count">({count})</span>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
