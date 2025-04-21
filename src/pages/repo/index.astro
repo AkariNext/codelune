@@ -8,7 +8,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { ClientRouter } from 'astro:transitions';
 
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('repo')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -96,7 +96,7 @@ const posts = (await getCollection('blog')).sort(
 					{
 						posts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
+								<a href={`/repo/${post.id}/`}>
 									<img transition:name={`hero-image-${post.data.title}`} transition:animate="initial" width={720} height={360} src={post.data.heroImage} alt="" />
 									<h4 class="title" transition:name={`title-${post.data.title}`}>{post.data.title}</h4>
 									<p class="date">
