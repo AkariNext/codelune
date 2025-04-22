@@ -13,6 +13,14 @@ const repo = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
 		tags: z.array(z.string()).optional(),
+		alternative: z.array(z.string()).optional(),
+		links: z.array(
+			z.object({
+				type: z.enum(['github', 'gitlab', 'npm', 'pypi', 'site', 'official']),
+				url: z.string()}
+			)
+			
+		).optional(),
 	}),
 });
 
