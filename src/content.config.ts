@@ -14,9 +14,10 @@ const repo = defineCollection({
 		heroImage: z.string().optional(),
 		tags: z.array(z.string()).optional(),
 		alternative: z.array(z.string()).optional(),
+		officialLink: z.string().optional(),
 		links: z.array(
 			z.object({
-				type: z.enum(['github', 'gitlab', 'npm', 'pypi', 'site', 'official']),
+				type: z.enum(['github', 'gitlab', 'npm', 'pypi', 'site']),
 				url: z.string()}
 			)
 			
